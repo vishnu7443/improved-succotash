@@ -20,5 +20,29 @@
             "machine learning",
             "e-commerce"
         ]
+    },
+    "loga": {
+        "username": "loga",
+        "email": "logadharinish@gmail.com",
+        "first_name": "Loga",
+        "last_name": "Dharinish",
+        "country": "India",
+        "city": "",
+        "countryCode": "+91",
+        "phone": "6369325034",
+        "university": "SRIT",
+        "degree": "BE",
+        "field_study": "CSE",
+        "graduation_year": "2027",
+        "linkedin": "https://linkedin/in/loga05",
+        "portfolio": "https://linkedin/in/loga05",
+        "bio": "none",
+        "photoData": null,
+        "skills": [
+            "excel",
+            "machine learning",
+            "power bi",
+            "tableau"
+        ]
     }
 }

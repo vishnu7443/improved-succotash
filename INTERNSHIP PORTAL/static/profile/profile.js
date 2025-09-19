@@ -109,8 +109,8 @@ document.addEventListener("click", function (e) {
 });
 
 // Add skill with no duplicates
-function addSkill() {
-  let value = skillsInput.value.trim();
+function addSkill(skillValue) {
+  let value = (skillValue || skillsInput.value.trim());
   if (!value) return;
 
   const skills = Array.from(skillsList.querySelectorAll(".skills-badge")).map(

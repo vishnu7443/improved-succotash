@@ -5,6 +5,12 @@ import json
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_babel import Babel
 
+# app.py (top)
+from text_exact import recommend_jobs, build_candidate_from_profile
+
+candidate = {'skills': ['python','sql'], 'domain': [], 'soft': [], 'location': 'Bengaluru, India', 'role_interest': ['data analyst']}
+print(recommend_jobs(candidate, top_k=3))
+
 app = Flask(__name__)
 app.secret_key = 'replace_with_a_secure_secret_key'
 
@@ -12,16 +18,17 @@ USER_CSV = 'users.csv'
 PROFILE_FILE = 'profiles.json'
 
 LANGUAGES = ['en', 'hi', 'ml']  # Supported languages
-
 app.config['BABEL_TRANSLATION_DIRECTORIES'] = 'translations'
-babel = Babel(app)
 
-@babel.localeselector
 def get_locale():
     lang = request.cookies.get('user_lang')
     if lang in LANGUAGES:
         return lang
     return 'en'
+
+# ✅ Initialize Babel with locale_selector
+babel = Babel(app, locale_selector=get_locale)
+
 
 def initialize_csv():
     if not os.path.exists(USER_CSV):
@@ -137,18 +144,21 @@ def profile():
 def profile_data():
     if 'username' not in session:
         return jsonify({'error': 'Unauthorized'}), 401
+    
     username = session['username']
     profiles = load_profiles()
 
     if request.method == 'GET':
-        # Return saved profile data or empty dict
+        # Return profile if exists, else empty object
         return jsonify(profiles.get(username, {}))
 
     if request.method == 'POST':
-        data = request.json
-        profiles[username] = data
+        data = request.json or {}
+        # Merge new data with existing
+        profiles[username] = {**profiles.get(username, {}), **data}
         save_profiles(profiles)
-        return jsonify({'status': 'success'})
+        return jsonify({'status': 'success', 'data': profiles[username]})
+
     
 @app.route('/feedback')
 def feedback():
@@ -172,6 +182,27 @@ def assessment():
 def private_internships():
     # optionally pass internships data here from DB
     return render_template('private_internship.html', username=session.get('username'))
+
+@app.route('/recommendations', methods=['GET'])
+def recommendations():
+    if 'username' not in session:
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    profiles = load_profiles()
+    username = session['username']
+    profile = profiles.get(username, {})
+
+    # Build candidate dict from profile
+    candidate = build_candidate_from_profile(profile)
+
+    # Get recommendations (top 10)
+    try:
+        recs = recommend_jobs(candidate, top_k=10)
+    except Exception as e:
+        return jsonify({'error': 'Recommendation failed', 'message': str(e)}), 500
+
+    return jsonify({'recommendations': recs})
+
 
 
 if __name__ == "__main__":
