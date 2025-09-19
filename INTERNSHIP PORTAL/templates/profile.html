@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ _('Internship Portal Profile') }}</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <!-- Profile and Menu CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='profile/profile.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='main_menu/menu.css') }}" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <aside class="sidebar flex-shrink-0">
+      <div class="brand p-4">
+        <i class="fa-solid fa-briefcase"></i> {{ _('Internship Portal') }}
+      </div>
+      <nav>
+        <ul class="list-unstyled m-0 p-0">
+          <li class="p-3" onclick="window.location.href='/main_menu'">
+            <i class="fa-solid fa-house me-2"></i>{{ _('Dashboard') }}
+          </li>
+          <li class="p-3 active" onclick="window.location.href='/profile'">
+            <i class="fa-solid fa-user me-2"></i>{{ _('Profile') }}
+          </li>
+          <li class="p-3" onclick="window.location.href='/assessment'">
+            <i class="fa-solid fa-clipboard-list me-2"></i>{{ _('Assessment Test') }}
+          </li>
+          <li class="p-3" onclick="window.location.href='/applications'">
+            <i class="fa-solid fa-folder-open me-2"></i>{{ _('Application Management') }}
+          </li>
+          <li class="p-3" onclick="window.location.href='/private_internships'">
+            <i class="fa-solid fa-user-lock me-2"></i>{{ _('Private Internships') }}
+          </li>
+          <li class="p-3" onclick="window.location.href='/government_internships'">
+            <i class="fa-solid fa-building-columns me-2"></i>{{ _('Government Internships') }}
+          </li>
+          <li class="p-3" onclick="window.location.href='/logout'">
+            <i class="fa-solid fa-right-from-bracket me-2"></i>{{ _('Logout') }}
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content flex-grow-1 p-5">
+      <header class="mb-5">
+        <h1>{{ _('Welcome,') }} {{ session.get('username', _('User')) }}</h1>
+      </header>
+
+      <div class="container-fluid">
+        <div class="row g-4">
+          <!-- Profile sidebar info -->
+          <div class="col-lg-4">
+            <div class="profile-sidebar bg-white rounded-4 shadow-sm p-4 text-center">
+              <img
+                src="https://randomuser.me/api/portraits/women/44.jpg"
+                alt="{{ _('Profile Pic') }}"
+                id="profileImg"
+                class="profile-pic rounded-circle mb-3"
+              />
+              <label
+                for="photoUpload"
+                role="button"
+                tabindex="0"
+                class="edit-link d-block mb-3"
+              >
+                {{ _('Change Photo') }}
+              </label>
+              <input type="file" id="photoUpload" accept="image/*" style="display:none;" />
+
+              <h4 id="profileName" class="fw-bold mb-3">{{ _('Jenny Wilson') }}</h4>
+
+              <div class="info-section small mb-4 text-start">
+                <div class="mb-2"><i class="fa fa-envelope me-2"></i><span id="sidebarEmail">jenny.w@email.com</span></div>
+                <div class="mb-2"><i class="fa fa-phone me-2"></i><span id="sidebarPhone">+91 9876543210</span></div>
+                <div class="mb-2"><i class="fa fa-map-marker-alt me-2"></i><span id="sidebarLocation">{{ _('New York, USA') }}</span></div>
+                <div class="mb-2"><i class="fa fa-university me-2"></i><span id="sidebarUniversity">{{ _('XYZ University') }}</span></div>
+              </div>
+
+              <div>
+                <span class="profile-label fw-semibold">{{ _('Specializations') }}</span>
+                <div id="skillsList" class="d-flex flex-wrap gap-2 mb-2"></div>
+                <div class="position-relative">
+                  <input
+                    type="text"
+                    id="skillsInput"
+                    class="form-control"
+                    placeholder="{{ _('Add a skill') }}"
+                    autocomplete="off"
+                  />
+                  <div id="suggestionBox" class="autocomplete-items bg-white shadow rounded w-100 position-absolute"></div>
+                </div>
+                <button class="btn btn-primary btn-sm w-100 mt-2" onclick="addSkill()">{{ _('Add Skill') }}</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile form -->
+          <div class="col-lg-8">
+            <div class="card p-4 shadow-sm rounded-4">
+              <h5 class="text-primary fw-semibold mb-4">{{ _('Account Details') }}</h5>
+              <form id="profileForm" onsubmit="event.preventDefault(); saveProfile();">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="inputUsername" class="profile-label">{{ _('Username') }}</label>
+                    <input type="text" class="form-control" id="inputUsername" placeholder="{{ _('Enter username') }}" />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputEmail" class="profile-label">{{ _('Email address') }} <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="{{ _('Enter your email') }}" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputFirstName" class="profile-label">{{ _('First name') }} <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="{{ _('First name') }}" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputLastName" class="profile-label">{{ _('Last name') }} <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="inputLastName" placeholder="{{ _('Last name') }}" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="countrySelect" class="profile-label">{{ _('Country') }} <span class="text-danger">*</span></label>
+                    <select id="countrySelect" class="form-select" required>
+                      <option value="" selected disabled>{{ _('Select a country') }}</option>
+                      <option value="India">{{ _('India') }}</option>
+                      <option value="USA">{{ _('USA') }}</option>
+                      <option value="UK">{{ _('UK') }}</option>
+                      <option value="Australia">{{ _('Australia') }}</option>
+                      <option value="Japan">{{ _('Japan') }}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="citySelect" class="profile-label">{{ _('City') }} <span class="text-danger">*</span></label>
+                    <select id="citySelect" class="form-select" disabled required>
+                      <option value="" selected disabled>{{ _('Select a city') }}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="countryCode" class="profile-label">{{ _('Country Code') }} <span class="text-danger">*</span></label>
+                    <select id="countryCode" class="form-select" required>
+                      <option value="+91" data-length="10" selected>{{ _('India (+91)') }}</option>
+                      <option value="+1" data-length="10">{{ _('USA (+1)') }}</option>
+                      <option value="+44" data-length="10">{{ _('UK (+44)') }}</option>
+                      <option value="+61" data-length="9">{{ _('Australia (+61)') }}</option>
+                      <option value="+81" data-length="10">{{ _('Japan (+81)') }}</option>
+                    </select>
+                  </div>
+                  <div class="col-md-8">
+                    <label for="inputPhone" class="profile-label">{{ _('Phone Number') }} <span class="text-danger">*</span></label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputPhone"
+                      placeholder="{{ _('Enter phone number') }}"
+                      maxlength="10"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputUniversity" class="profile-label">{{ _('University/College') }} <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="inputUniversity" placeholder="{{ _('University or College') }}" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputDegree" class="profile-label">{{ _('Degree') }} <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="inputDegree" placeholder="{{ _('Degree') }}" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputFieldStudy" class="profile-label">{{ _('Field of Study') }} <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="inputFieldStudy" placeholder="{{ _('Field of Study') }}" required />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputGraduationYear" class="profile-label">{{ _('Graduation Year') }} <span class="text-danger">*</span></label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="inputGraduationYear"
+                      placeholder="{{ _('Graduation Year') }}"
+                      min="1900"
+                      max="2100"
+                      required
+                    />
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputLinkedIn" class="profile-label">{{ _('LinkedIn Profile URL') }}</label>
+                    <input
+                      type="url"
+                      class="form-control"
+                      id="inputLinkedIn"
+                      placeholder="{{ _('https://linkedin.com/in/username') }}"
+                    />
+                  </div>
+                  <div class="col-12">
+                    <label for="inputPortfolio" class="profile-label">{{ _('Portfolio/Website URL') }}</label>
+                    <input type="url" class="form-control" id="inputPortfolio" placeholder="{{ _('https://yourportfolio.com') }}" />
+                  </div>
+                  <div class="col-12">
+                    <label for="inputBio" class="profile-label">{{ _('Short Bio / About Me') }}</label>
+                    <textarea class="form-control" id="inputBio" rows="3" placeholder="{{ _('Write something about yourself') }}"></textarea>
+                  </div>
+                </div>
+                <button class="btn btn-primary mt-4 w-100 py-2 fs-5" type="submit">{{ _('Save changes') }}</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='profile/profile.js') }}"></script>
+    <script src="{{ url_for('static', filename='main_menu/menu.js') }}"></script>
+</body>
+</html>

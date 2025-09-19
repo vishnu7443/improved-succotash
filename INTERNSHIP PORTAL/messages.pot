@@ -1,0 +1,382 @@
+# Translations template for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-09-11 10:53+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: templates/login.html:6
+msgid "Login - Internship Portal"
+msgstr ""
+
+#: templates/login.html:14
+msgid "Find the best internships"
+msgstr ""
+
+#: templates/login.html:15
+msgid "Personalized recommendations • Track applications • Skill tests"
+msgstr ""
+
+#: templates/login.html:16 templates/register.html:16
+msgid "Internship"
+msgstr ""
+
+#: templates/login.html:19 templates/menu.html:14 templates/profile.html:22
+#: templates/register.html:19
+msgid "Internship Portal"
+msgstr ""
+
+#: templates/login.html:20
+msgid "Welcome Back"
+msgstr ""
+
+#: templates/login.html:29
+msgid "Username or Email:"
+msgstr ""
+
+#: templates/login.html:31
+msgid "Password:"
+msgstr ""
+
+#: templates/login.html:33
+msgid "Log In"
+msgstr ""
+
+#: templates/login.html:35
+msgid "New here?"
+msgstr ""
+
+#: templates/login.html:35
+msgid "Register now"
+msgstr ""
+
+#: templates/menu.html:6
+msgid "Main Menu - Internship Portal"
+msgstr ""
+
+#: templates/menu.html:18 templates/profile.html:27
+msgid "Dashboard"
+msgstr ""
+
+#: templates/menu.html:21 templates/profile.html:30
+msgid "Profile"
+msgstr ""
+
+#: templates/menu.html:24 templates/profile.html:33
+msgid "Assessment Test"
+msgstr ""
+
+#: templates/menu.html:25 templates/profile.html:36
+msgid "Application Management"
+msgstr ""
+
+#: templates/menu.html:26 templates/profile.html:39
+msgid "Private Internships"
+msgstr ""
+
+#: templates/menu.html:27 templates/profile.html:42
+msgid "Government Internships"
+msgstr ""
+
+#: templates/menu.html:28 templates/profile.html:45
+msgid "Logout"
+msgstr ""
+
+#: templates/menu.html:35 templates/profile.html:54
+msgid "Welcome,"
+msgstr ""
+
+#: templates/menu.html:39
+msgid "Top picks for you"
+msgstr ""
+
+#: templates/menu.html:40
+msgid "Handpicked roles to match your skills"
+msgstr ""
+
+#: templates/menu.html:44
+msgid "Recommended"
+msgstr ""
+
+#: templates/menu.html:44
+msgid "Based on your profile"
+msgstr ""
+
+#: templates/menu.html:48
+msgid "Applied"
+msgstr ""
+
+#: templates/menu.html:48
+msgid "Applications in progress"
+msgstr ""
+
+#: templates/menu.html:52
+msgid "Shortlisted"
+msgstr ""
+
+#: templates/menu.html:52
+msgid "Interview invites"
+msgstr ""
+
+#: templates/menu.html:55
+msgid "Search internships, companies, locations..."
+msgstr ""
+
+#: templates/menu.html:56
+msgid "Search"
+msgstr ""
+
+#: templates/menu.html:66
+msgid "Select a menu item to see content here."
+msgstr ""
+
+#: templates/profile.html:6
+msgid "Internship Portal Profile"
+msgstr ""
+
+#: templates/profile.html:54
+msgid "User"
+msgstr ""
+
+#: templates/profile.html:64
+msgid "Profile Pic"
+msgstr ""
+
+#: templates/profile.html:74
+msgid "Change Photo"
+msgstr ""
+
+#: templates/profile.html:78
+msgid "Jenny Wilson"
+msgstr ""
+
+#: templates/profile.html:83
+msgid "New York, USA"
+msgstr ""
+
+#: templates/profile.html:84
+msgid "XYZ University"
+msgstr ""
+
+#: templates/profile.html:88
+msgid "Specializations"
+msgstr ""
+
+#: templates/profile.html:95
+msgid "Add a skill"
+msgstr ""
+
+#: templates/profile.html:100
+msgid "Add Skill"
+msgstr ""
+
+#: templates/profile.html:108
+msgid "Account Details"
+msgstr ""
+
+#: templates/profile.html:112
+msgid "Username"
+msgstr ""
+
+#: templates/profile.html:113
+msgid "Enter username"
+msgstr ""
+
+#: templates/profile.html:116
+msgid "Email address"
+msgstr ""
+
+#: templates/profile.html:117
+msgid "Enter your email"
+msgstr ""
+
+#: templates/profile.html:120 templates/profile.html:121
+msgid "First name"
+msgstr ""
+
+#: templates/profile.html:124 templates/profile.html:125
+msgid "Last name"
+msgstr ""
+
+#: templates/profile.html:128
+msgid "Country"
+msgstr ""
+
+#: templates/profile.html:130
+msgid "Select a country"
+msgstr ""
+
+#: templates/profile.html:131
+msgid "India"
+msgstr ""
+
+#: templates/profile.html:132
+msgid "USA"
+msgstr ""
+
+#: templates/profile.html:133
+msgid "UK"
+msgstr ""
+
+#: templates/profile.html:134
+msgid "Australia"
+msgstr ""
+
+#: templates/profile.html:135
+msgid "Japan"
+msgstr ""
+
+#: templates/profile.html:139
+msgid "City"
+msgstr ""
+
+#: templates/profile.html:141
+msgid "Select a city"
+msgstr ""
+
+#: templates/profile.html:145
+msgid "Country Code"
+msgstr ""
+
+#: templates/profile.html:147
+msgid "India (+91)"
+msgstr ""
+
+#: templates/profile.html:148
+msgid "USA (+1)"
+msgstr ""
+
+#: templates/profile.html:149
+msgid "UK (+44)"
+msgstr ""
+
+#: templates/profile.html:150
+msgid "Australia (+61)"
+msgstr ""
+
+#: templates/profile.html:151
+msgid "Japan (+81)"
+msgstr ""
+
+#: templates/profile.html:155
+msgid "Phone Number"
+msgstr ""
+
+#: templates/profile.html:160
+msgid "Enter phone number"
+msgstr ""
+
+#: templates/profile.html:166
+msgid "University/College"
+msgstr ""
+
+#: templates/profile.html:167
+msgid "University or College"
+msgstr ""
+
+#: templates/profile.html:170 templates/profile.html:171
+msgid "Degree"
+msgstr ""
+
+#: templates/profile.html:174 templates/profile.html:175
+msgid "Field of Study"
+msgstr ""
+
+#: templates/profile.html:178 templates/profile.html:183
+msgid "Graduation Year"
+msgstr ""
+
+#: templates/profile.html:190
+msgid "LinkedIn Profile URL"
+msgstr ""
+
+#: templates/profile.html:195
+msgid "https://linkedin.com/in/username"
+msgstr ""
+
+#: templates/profile.html:199
+msgid "Portfolio/Website URL"
+msgstr ""
+
+#: templates/profile.html:200
+msgid "https://yourportfolio.com"
+msgstr ""
+
+#: templates/profile.html:203
+msgid "Short Bio / About Me"
+msgstr ""
+
+#: templates/profile.html:204
+msgid "Write something about yourself"
+msgstr ""
+
+#: templates/profile.html:207
+msgid "Save changes"
+msgstr ""
+
+#: templates/register.html:6
+msgid "Register - Internship Portal"
+msgstr ""
+
+#: templates/register.html:14
+msgid "Join Internship Portal"
+msgstr ""
+
+#: templates/register.html:15
+msgid ""
+"Create your account to access personalized internship recommendations and"
+" more."
+msgstr ""
+
+#: templates/register.html:20
+msgid "Create Account"
+msgstr ""
+
+#: templates/register.html:29
+msgid "Username or Email"
+msgstr ""
+
+#: templates/register.html:30
+msgid "Enter your username or email"
+msgstr ""
+
+#: templates/register.html:31
+msgid "Password"
+msgstr ""
+
+#: templates/register.html:32
+msgid "Enter password"
+msgstr ""
+
+#: templates/register.html:33
+msgid "Confirm Password"
+msgstr ""
+
+#: templates/register.html:34
+msgid "Confirm password"
+msgstr ""
+
+#: templates/register.html:35
+msgid "Register"
+msgstr ""
+
+#: templates/register.html:37
+msgid "Already have an account?"
+msgstr ""
+
+#: templates/register.html:37
+msgid "Login here"
+msgstr ""
+

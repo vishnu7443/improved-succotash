@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Select Language - Internship Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8faff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .lang-tabs {
+      display: flex;
+      gap: 24px;
+      border: 2px solid #007BFF;
+      border-radius: 12px;
+      padding: 16px 32px;
+      background-color: white;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .lang-tab {
+      cursor: pointer;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #007BFF;
+      border: 2px solid transparent;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      text-align: center;
+      user-select: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .lang-tab:hover {
+      background-color: #007BFF;
+      color: white;
+      border-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-tabs">
+    <a href="{{ url_for('set_language', lang_code='en') }}" class="lang-tab">English</a>
+    <a href="{{ url_for('set_language', lang_code='hi') }}" class="lang-tab">हिन्दी</a>
+    <a href="{{ url_for('set_language', lang_code='ml') }}" class="lang-tab">മലയാളം</a>
+  </div>
+</body>
+</html>

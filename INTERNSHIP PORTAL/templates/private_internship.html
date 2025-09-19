@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main_menu/menu.css') }}" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Internships List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <aside class="sidebar">
+  <div class="brand">
+    <i class="fa-solid fa-briefcase"></i> Internship Portal
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/dashboard"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+      <li><a href="/profile"><i class="fa-solid fa-user"></i> Profile</a></li>
+      <li><a href="/assessment"><i class="fa-solid fa-clipboard-list"></i> Assessment Test</a></li>
+      <li><a href="/applications"><i class="fa-solid fa-folder-open"></i> Application Management</a></li>
+      <li class="active"><a href="/private_internships"><i class="fa-solid fa-user-lock"></i> Private Internships</a></li>
+      <li><a href="/government_internships"><i class="fa-solid fa-building-columns"></i> Government Internships</a></li>
+      <li><a href="/feedback"><i class="fa-solid fa-star"></i> Feedback</a></li>
+      <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+    </ul>
+  </nav>
+</aside>
+
+  <div class="max-w-5xl mx-auto">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold text-gray-800">Private Internships List</h1>
+      <div class="flex gap-4">
+        <select class="border rounded-lg px-3 py-2">
+          <option>Select Internship Type</option>
+        </select>
+        <select class="border rounded-lg px-3 py-2">
+          <option>Select Location</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Internship Card Template -->
+    <div class="space-y-6">
+      
+      <!-- Card 1 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">LEARNBIE WEB DEVELOPMENT</h2>
+        <p><span class="font-medium">📧 Email:</span> support@learnbie.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9353842710</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. / B.E. / Equivalent | Computer Science</p>
+        <p><span class="font-medium">📍 Location:</span> Pan India</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 01 Jan 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 15000/month</p>
+        <p class="mt-2 text-gray-600">Introduction to Full-Stack Development <br> Introduction to the MERN Stack</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">LEARNBIE AI & ML</h2>
+        <p><span class="font-medium">📧 Email:</span> support@learnbie.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9353842710</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. / B.E. / Equivalent | Computer Science and Engineering</p>
+        <p><span class="font-medium">📍 Location:</span> Pan India</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 01 Jan 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 15000/month</p>
+        <p class="mt-2 text-gray-600">Fundamentals of AI and ML <br> Python for AI & ML, Learning Python basics</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">DATA ANALYTICS INTERN</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@dataworks.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9876543210</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Sc. / M.Sc. / B.Tech. | Statistics, Data Science</p>
+        <p><span class="font-medium">📍 Location:</span> Remote</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 15 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 12000/month</p>
+        <p class="mt-2 text-gray-600">Hands-on with SQL, Excel, and Power BI <br> Data visualization & reporting</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">CYBER SECURITY INTERN</h2>
+        <p><span class="font-medium">📧 Email:</span> careers@securetech.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9988776655</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. / B.E. / Equivalent | IT / Cybersecurity</p>
+        <p><span class="font-medium">📍 Location:</span> Bengaluru</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 28 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 18000/month</p>
+        <p class="mt-2 text-gray-600">Network security basics <br> Penetration testing & vulnerability assessment</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Mobile App Development Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@appify.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9112233445</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. | Computer Science</p>
+        <p><span class="font-medium">📍 Location:</span> Pune</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 25 Jan 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 13000/month</p>
+        <p class="mt-2 text-gray-600">Develop Android & iOS apps using Flutter and React Native.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">UI/UX Design Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> careers@designpro.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9345678123</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Des. / B.Tech.</p>
+        <p><span class="font-medium">📍 Location:</span> Remote</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 28 Jan 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 10000/month</p>
+        <p class="mt-2 text-gray-600">Work with Figma, Adobe XD, and user research projects.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">DevOps Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@devopsworld.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9090909090</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. | IT</p>
+        <p><span class="font-medium">📍 Location:</span> Chennai</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 30 Jan 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 17000/month</p>
+        <p class="mt-2 text-gray-600">Learn CI/CD pipelines, Docker, and Kubernetes.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Blockchain Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> careers@blocklabs.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9887766554</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. | CSE / Blockchain</p>
+        <p><span class="font-medium">📍 Location:</span> Mumbai</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 05 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 20000/month</p>
+        <p class="mt-2 text-gray-600">Smart contracts & Ethereum development projects.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 10 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Game Development Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@gamestudio.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9223344556</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. / B.Sc. | Game Dev</p>
+        <p><span class="font-medium">📍 Location:</span> Remote</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 08 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 15000/month</p>
+        <p class="mt-2 text-gray-600">Unity, Unreal Engine, and C# projects.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 11 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Digital Marketing Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@marketpro.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9332211455</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> Any Graduate</p>
+        <p><span class="font-medium">📍 Location:</span> Kolkata</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 12 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 8000/month</p>
+        <p class="mt-2 text-gray-600">SEO, Google Ads, and social media marketing.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 12 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Content Writing Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> careers@writewell.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9112233446</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> Any Graduate</p>
+        <p><span class="font-medium">📍 Location:</span> Remote</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 15 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 6000/month</p>
+        <p class="mt-2 text-gray-600">Blog writing, articles, and SEO-friendly content.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 13 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Business Analyst Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@bizsolutions.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9445566778</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> MBA / BBA / B.Tech.</p>
+        <p><span class="font-medium">📍 Location:</span> Gurugram</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 18 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 14000/month</p>
+        <p class="mt-2 text-gray-600">Business analysis, client interactions, and reporting.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 14 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Product Management Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> careers@pmhub.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9556677889</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> MBA / B.Tech.</p>
+        <p><span class="font-medium">📍 Location:</span> Remote</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 20 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 20000/month</p>
+        <p class="mt-2 text-gray-600">Assist PMs in roadmap planning and feature design.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 15 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Finance Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@finworld.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9667788990</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Com. / MBA Finance</p>
+        <p><span class="font-medium">📍 Location:</span> Mumbai</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 22 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 12000/month</p>
+        <p class="mt-2 text-gray-600">Accounting, financial analysis, and reporting.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+      <!-- Card 16 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Human Resources Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> careers@hrconnect.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9778899001</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> MBA HR / BBA</p>
+        <p><span class="font-medium">📍 Location:</span> Bengaluru</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 25 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 10000/month</p>
+        <p class="mt-2 text-gray-600">Recruitment, onboarding, and HR operations.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 17 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Sales Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@sellfast.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9334455667</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> Any Graduate</p>
+        <p><span class="font-medium">📍 Location:</span> Gurugram</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 28 Feb 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 9000/month</p>
+        <p class="mt-2 text-gray-600">Lead generation, cold calling, and client interactions.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 18 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Operations Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@opshub.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9445566779</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> MBA / BBA</p>
+        <p><span class="font-medium">📍 Location:</span> Noida</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 02 Mar 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 11000/month</p>
+        <p class="mt-2 text-gray-600">Assist operations team with workflow and efficiency improvements.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 19 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Graphic Design Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> careers@creativelabs.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9778899002</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Des. / Fine Arts</p>
+        <p><span class="font-medium">📍 Location:</span> Remote</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 05 Mar 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 9000/month</p>
+        <p class="mt-2 text-gray-600">Poster design, branding, and social media creatives.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 20 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Journalism Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@mediapress.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9887766553</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> BA Journalism / Mass Comm</p>
+        <p><span class="font-medium">📍 Location:</span> Delhi</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 08 Mar 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 10000/month</p>
+        <p class="mt-2 text-gray-600">Assist in reporting, editing, and newsroom tasks.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 21 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Law Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> careers@lawfirm.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9332211447</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> LLB / LLM</p>
+        <p><span class="font-medium">📍 Location:</span> Delhi</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 10 Mar 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 12000/month</p>
+        <p class="mt-2 text-gray-600">Assist lawyers with case research and documentation.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 22 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Medical Research Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@medlabs.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9556677881</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> MBBS / B.Sc. Life Sciences</p>
+        <p><span class="font-medium">📍 Location:</span> Pune</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 12 Mar 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 20000/month</p>
+        <p class="mt-2 text-gray-600">Clinical data collection and lab research support.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 23 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Civil Engineering Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@buildtech.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9778899003</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. Civil</p>
+        <p><span class="font-medium">📍 Location:</span> Ahmedabad</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 15 Mar 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 15000/month</p>
+        <p class="mt-2 text-gray-600">Assist in construction planning and structural design.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 24 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Mechanical Engineering Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> careers@mechworks.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9667788992</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. Mechanical</p>
+        <p><span class="font-medium">📍 Location:</span> Chennai</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 18 Mar 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 14000/month</p>
+        <p class="mt-2 text-gray-600">Work on CAD, thermodynamics, and design systems.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+      <!-- Card 25 -->
+      <div class="bg-white shadow-md rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Electrical Engineering Intern</h2>
+        <p><span class="font-medium">📧 Email:</span> hr@electrohub.com</p>
+        <p><span class="font-medium">📞 Phone No:</span> 9556677882</p>
+        <p><span class="font-medium">🎓 Qualification Required:</span> B.Tech. Electrical</p>
+        <p><span class="font-medium">📍 Location:</span> Hyderabad</p>
+        <p><span class="font-medium">⏰ Last Date to Apply:</span> 20 Mar 2026</p>
+        <p><span class="font-medium">💰 Stipend:</span> Rs. 15000/month</p>
+        <p class="mt-2 text-gray-600">Assist with circuit design and power systems projects.</p>
+        <div class="mt-4 flex gap-3">
+          <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Apply</button>
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Detail</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
+
+   

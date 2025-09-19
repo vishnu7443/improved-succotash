@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback | Internship Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide-icons"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    .star {
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.2s ease-in-out;
+    }
+    .star.selected {
+      color: #fbbf24; /* Yellow */
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="bg-white shadow-lg rounded-xl p-8 max-w-lg w-full">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Feedback</h2>
+    
+    <!-- Question -->
+    <p class="text-lg font-medium text-gray-700 mb-4">
+      How was your experience with the portal?
+    </p>
+
+    <!-- Star Rating -->
+    <div class="flex justify-center mb-6 space-x-2" id="stars">
+      <span class="star text-gray-400" data-value="1">&#9733;</span>
+      <span class="star text-gray-400" data-value="2">&#9733;</span>
+      <span class="star text-gray-400" data-value="3">&#9733;</span>
+      <span class="star text-gray-400" data-value="4">&#9733;</span>
+      <span class="star text-gray-400" data-value="5">&#9733;</span>
+    </div>
+
+    <!-- Suggestion Box -->
+    <label for="suggestion" class="block text-gray-700 font-medium mb-2">
+      Suggestions (optional)
+    </label>
+    <textarea id="suggestion" rows="4" 
+      class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-400 outline-none"
+      placeholder="Write your feedback here..."></textarea>
+
+    <!-- Submit Button -->
+    <button 
+      class="mt-6 w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition">
+      Submit Feedback
+    </button>
+  </div>
+
+  <script>
+    const stars = document.querySelectorAll(".star");
+    stars.forEach((star, index) => {
+      star.addEventListener("click", () => {
+        stars.forEach((s, i) => {
+          if (i <= index) {
+            s.classList.add("selected");
+            s.classList.remove("text-gray-400");
+          } else {
+            s.classList.remove("selected");
+            s.classList.add("text-gray-400");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

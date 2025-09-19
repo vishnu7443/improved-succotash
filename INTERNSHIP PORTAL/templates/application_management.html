@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Application Management | Internship Portal</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main_menu/menu.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .application-card:hover {
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+      transform: translateY(-4px);
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+    }
+    .status-applied { background-color: #bae6fd; color: #0369a1; }
+    .status-reviewed { background-color: #dbeafe; color: #2563eb; }
+    .status-interviewing { background-color: #c7f3d8; color: #15803d; }
+    .status-rejected { background-color: #fecaca; color: #b91c1c; }
+    .status-accepted { background-color: #bbf7d0; color: #166534; }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-6 font-sans text-gray-900">
+<aside class="sidebar">
+  <div class="brand">
+    <i class="fa-solid fa-briefcase"></i>
+    <span>Internship Portal</span>
+  </div>
+  <nav>
+    <ul>
+      <li>
+        <a href="/dashboard">
+          <i class="fa-solid fa-house"></i> Dashboard
+        </a>
+      </li>
+      <li>
+        <a href="/profile">
+          <i class="fa-solid fa-user"></i> Profile
+        </a>
+      </li>
+      <li>
+        <a href="/assessment">
+          <i class="fa-solid fa-clipboard-list"></i> Assessment Test
+        </a>
+      </li>
+      <li>
+        <a href="/applications">
+          <i class="fa-solid fa-folder-open"></i> Application Management
+        </a>
+      </li>
+      <li>
+        <a href="/private_internships">
+          <i class="fa-solid fa-user-lock"></i> Private Internships
+        </a>
+      </li>
+      <li class="active">
+        <a href="/government_internships">
+          <i class="fa-solid fa-building-columns"></i> Government Internships
+        </a>
+      </li>
+      <li>
+        <a href="/feedback">
+          <i class="fa-solid fa-star"></i> Feedback
+        </a>
+      </li>
+      <li>
+        <a href="/logout">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+  <div class="max-w-5xl mx-auto">
+    <h1 class="text-3xl font-extrabold mb-8 border-b-2 border-blue-600 pb-2">
+      <i class="fa-solid fa-folder-open text-blue-600 mr-3"></i>
+      Application Management
+    </h1>
+
+    <div id="application-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Application cards added by JS -->
+    </div>
+
+    <div id="application-detail" class="hidden bg-white p-8 rounded-xl shadow-lg mt-10 max-w-4xl mx-auto">
+      <button onclick="backToList()" class="mb-6 text-blue-600 hover:underline flex items-center gap-2">
+        <i class="fa-solid fa-arrow-left"></i> Back to Applications
+      </button>
+      <h2 id="detail-title" class="text-3xl font-bold mb-4"></h2>
+      <p><strong>Status:</strong> <span id="detail-status" class="px-3 py-1 rounded-lg font-semibold"></span></p>
+      <p><strong>Applied On:</strong> <span id="detail-date"></span></p>
+      <h3 class="text-xl font-semibold mt-6 mb-2">Internship Details</h3>
+      <p><strong>Title:</strong> <span id="detail-internship-title"></span></p>
+      <p><strong>Company:</strong> <span id="detail-company"></span></p>
+      <p><strong>Location:</strong> <span id="detail-location"></span></p>
+      <p><strong>Duration:</strong> <span id="detail-duration"></span></p>
+      <p><strong>Stipend:</strong> <span id="detail-stipend"></span></p>
+      <h3 class="text-xl font-semibold mt-6 mb-2">Additional Notes</h3>
+      <p id="detail-notes"></p>
+    </div>
+  </div>
+
+  <script>
+    // Sample data representing user applications
+    const applications = [
+      {
+        id: 1,
+        status: 'Applied',
+        applied_on: '2025-08-15',
+        internship: {
+          title: 'Frontend Developer Intern',
+          company: 'Tech Solutions',
+          location: 'Remote',
+          duration: '3 Months',
+          stipend: '₹10,000/month'
+        },
+        notes: 'Waiting for recruiter response.'
+      },
+      {
+        id: 2,
+        status: 'Interviewing',
+        applied_on: '2025-07-20',
+        internship: {
+          title: 'Data Analyst Intern',
+          company: 'Data Insights',
+          location: 'New Delhi',
+          duration: '6 Months',
+          stipend: '₹15,000/month'
+        },
+        notes: 'Interview scheduled for 20th Sept.'
+      },
+      {
+        id: 3,
+        status: 'Rejected',
+        applied_on: '2025-06-10',
+        internship: {
+          title: 'Backend Developer Intern',
+          company: 'CodeBase',
+          location: 'Bangalore',
+          duration: '4 Months',
+          stipend: '₹12,000/month'
+        },
+        notes: 'Application declined.'
+      }
+    ];
+
+    const listContainer = document.getElementById("application-list");
+    const detailSection = document.getElementById("application-detail");
+    const listSection = document.getElementById("application-list");
+
+    // Map application status to CSS class
+    const statusClassMap = {
+      'Applied': 'status-applied',
+      'Reviewed': 'status-reviewed',
+      'Interviewing': 'status-interviewing',
+      'Rejected': 'status-rejected',
+      'Accepted': 'status-accepted'
+    };
+
+    // Create application cards
+    applications.forEach((app, index) => {
+      const card = document.createElement("div");
+      card.className = "application-card bg-white p-6 rounded-lg shadow cursor-pointer";
+      card.innerHTML = `
+        <h3 class="text-xl font-semibold mb-2">${app.internship.title}</h3>
+        <p><strong>Status:</strong> <span class="px-2 py-1 rounded ${statusClassMap[app.status]} font-semibold">${app.status}</span></p>
+        <p><strong>Applied On:</strong> ${app.applied_on}</p>
+        <p><strong>Location:</strong> ${app.internship.location}</p>
+        <button class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">View Details</button>
+      `;
+
+      card.querySelector('button').addEventListener('click', () => showDetails(index));
+
+      listContainer.appendChild(card);
+    });
+
+    function showDetails(index) {
+      const app = applications[index];
+      listSection.style.display = "none";
+      detailSection.classList.remove("hidden");
+
+      document.getElementById("detail-title").innerText = app.internship.title;
+      const statusSpan = document.getElementById("detail-status");
+      statusSpan.innerText = app.status;
+      statusSpan.className = `px-3 py-1 rounded-lg font-semibold ${statusClassMap[app.status]}`;
+
+      document.getElementById("detail-date").innerText = app.applied_on;
+      document.getElementById("detail-internship-title").innerText = app.internship.title;
+      document.getElementById("detail-company").innerText = app.internship.company;
+      document.getElementById("detail-location").innerText = app.internship.location;
+      document.getElementById("detail-duration").innerText = app.internship.duration;
+      document.getElementById("detail-stipend").innerText = app.internship.stipend;
+      document.getElementById("detail-notes").innerText = app.notes || 'N/A';
+    }
+
+    function backToList() {
+      detailSection.classList.add("hidden");
+      listSection.style.display = "grid";
+    }
+  </script>
+
+</body>
+</html>

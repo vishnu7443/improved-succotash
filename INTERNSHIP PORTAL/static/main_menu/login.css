@@ -1,0 +1,160 @@
+:root {
+  --accent: #06b6d4;
+  --bg: #f3f6fb;
+  --muted: #6b7280;
+  --radius: 12px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background: var(--bg);
+  color: #111827;
+}
+
+.page-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.login-card {
+  display: flex;
+  max-width: 900px;
+  width: 100%;
+  background: white;
+  box-shadow: 0 12px 40px rgba(2,6,23,0.08);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.login-left, .login-right {
+  flex: 1;
+  padding: 32px;
+}
+
+.login-left {
+  background: linear-gradient(180deg, #dbeafe, #cffafe);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.login-left h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  color: #0f172a;
+  margin: 0;
+}
+
+.login-left p {
+  color: var(--muted);
+  margin-top: 0;
+}
+
+.hero-img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 12px;
+  object-fit: cover;
+}
+
+.login-right h1.brand {
+  margin: 0 0 12px;
+}
+
+.login-right h3 {
+  margin: 8px 0 24px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(2,6,23,0.06);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.btn {
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  background: transparent;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 6px 18px rgba(6,182,212,0.12);
+}
+
+.btn.outline {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.btn.google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.divider {
+  text-align: center;
+  margin: 14px 0;
+  position: relative;
+}
+
+.divider span {
+  background: white;
+  padding: 0 10px;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.login-form a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.login-form a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .login-card {
+    flex-direction: column;
+  }
+  .login-left {
+    padding: 20px;
+  }
+  .login-right {
+    padding: 20px;
+  }
+}

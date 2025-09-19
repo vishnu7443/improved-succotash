@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ _('Register - Internship Portal') }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main_menu/login.css') }}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div class="page-center">
+    <div class="login-card">
+      <div class="login-left">
+        <h2>{{ _('Join Internship Portal') }}</h2>
+        <p>{{ _('Create your account to access personalized internship recommendations and more.') }}</p>
+        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&auto=format&fit=crop" alt="{{ _('Internship') }}" class="hero-img" />
+      </div>
+      <div class="login-right">
+        <h1 class="brand">{{ _('Internship Portal') }}</h1>
+        <h3>{{ _('Create Account') }}</h3>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="message {{ category }}">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        <form class="login-form" method="POST" action="{{ url_for('register') }}">
+          <label for="username">{{ _('Username or Email') }}</label>
+          <input type="text" id="username" name="username" placeholder="{{ _('Enter your username or email') }}" required />
+          <label for="password">{{ _('Password') }}</label>
+          <input type="password" id="password" name="password" placeholder="{{ _('Enter password') }}" required />
+          <label for="confirm_password">{{ _('Confirm Password') }}</label>
+          <input type="password" id="confirm_password" name="confirm_password" placeholder="{{ _('Confirm password') }}" required />
+          <button class="btn primary" type="submit">{{ _('Register') }}</button>
+        </form>
+        <p class="muted">{{ _('Already have an account?') }} <a href="{{ url_for('login') }}">{{ _('Login here') }}</a></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
