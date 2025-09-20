@@ -6,7 +6,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_babel import Babel
 
 # app.py (top)
-from text_exact import recommend_jobs, build_candidate_from_profile
+from text_exact import recommend_jobs, load_candidate_from_json
+
 
 
 app = Flask(__name__)
@@ -191,7 +192,9 @@ def recommendations():
     profile = profiles.get(username, {})
 
     # Build candidate dict from profile
-    candidate = build_candidate_from_profile(profile)
+    candidate = load_candidate_from_json(username, role="data_analyst")
+    if not candidate:
+        return jsonify({'error': 'Profile not found'}), 404
 
     # Get recommendations (top 10)
     try:

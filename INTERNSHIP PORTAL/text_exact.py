@@ -215,7 +215,7 @@ def recommend_jobs(candidate, top_k=5):
     top_matches = df_temp.sort_values("Match Score", ascending=False).head(top_k)
 
     # return JSON-serializable records
-    fields = ["Job Title", "Company Name", "Location", "Match Score"]
+    fields = ["Job Title", "Company Name", "Location", "Match Score","Salary Estimate", "Job Description","Type of ownership","Rating"]
     # ensure fields exist
     existing_fields = [f for f in fields if f in df_temp.columns]
     return top_matches[existing_fields].to_dict(orient="records")
