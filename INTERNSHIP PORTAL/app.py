@@ -51,11 +51,11 @@ def save_user(username, password_plain):
         writer = csv.writer(f)
         writer.writerow([username, password_plain, password_encrypted])
 
+
 def load_profiles():
-    if not os.path.exists(PROFILE_FILE):
-        return {}
-    with open(PROFILE_FILE, 'r') as f:
+    with open("profiles.json", "r") as f:
         return json.load(f)
+
 
 def save_profiles(profiles):
     with open(PROFILE_FILE, 'w') as f:
@@ -119,12 +119,34 @@ def register():
 
     return render_template('register.html')
 
+
 @app.route('/main_menu')
 def main_menu():
     if 'username' not in session:
         flash('Please login first', 'error')
         return redirect(url_for('login'))
-    return render_template('menu.html', username=session['username'])
+
+    username = session['username']
+
+    # ✅ Load all profiles
+    profiles = load_profiles()
+
+    # ✅ Fetch this user’s profile
+    candidate = profiles.get(username)
+    if not candidate:
+        flash('Profile not found', 'error')
+        return redirect(url_for('login'))
+
+    # Pass candidate dict to recommend_jobs
+    jobs = recommend_jobs(candidate)
+
+    # make sure jobs is always a list (even if empty)
+    if jobs is None:
+        jobs = []
+    print("DEBUG jobs:", jobs) 
+    return render_template('menu.html', username=username, jobs=jobs)
+
+
 
 @app.route('/logout')
 def logout():
