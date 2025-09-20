@@ -4,6 +4,7 @@
 import os
 import pandas as pd
 import re
+import json
 
 # ---------------------
 # CSV path (relative or via env var)
@@ -152,6 +153,52 @@ def calculate_match_score(job_row, candidate, extracted_skills):
 
     return score
 
+def split_candidate_skills(skills_list, role=None):
+    """Split a mixed skill list into hard, soft, and domain categories."""
+    result = {"hard": [], "domain": [], "soft": [], "skills": []}
+
+    # role-specific
+    role_skills = ROLE_SKILLS.get(role, {"hard": [], "domain": [], "soft": []})
+
+    # global pools (across all roles)
+    global_hard = {s.lower() for r in ROLE_SKILLS.values() for s in r["hard"]}
+    global_domain = {s.lower() for r in ROLE_SKILLS.values() for s in r["domain"]}
+    global_soft = {s.lower() for r in ROLE_SKILLS.values() for s in r["soft"]}
+
+    for skill in skills_list:
+        s = skill.lower().strip()
+
+        if s in [x.lower() for x in role_skills.get("hard", [])] or s in global_hard:
+            result["hard"].append(s)
+        elif s in [x.lower() for x in role_skills.get("domain", [])] or s in global_domain:
+            result["domain"].append(s)
+        elif s in [x.lower() for x in role_skills.get("soft", [])] or s in global_soft:
+            result["soft"].append(s)
+        else:
+            result["skills"].append(s)
+
+    return result
+
+
+
+candidate_raw = {
+    "skills": ["Python", "SQL", "Communication", "Finance", "Tableau"],
+    "location": "Mumbai",""
+    "role_interest": ["data analyst"]
+}
+
+split_skills = split_candidate_skills(candidate_raw["skills"], role="data_analyst")
+
+candidate = {
+    "skills": split_skills["hard"] + split_skills["skills"],
+    "domain": split_skills["domain"],
+    "soft": split_skills["soft"],
+    "location": candidate_raw["location"],
+    "role_interest": candidate_raw["role_interest"]
+}
+
+print(candidate)
+
 # =====================
 # Recommendation API: non-destructive (doesn't mutate global df)
 # =====================
@@ -172,3 +219,63 @@ def recommend_jobs(candidate, top_k=5):
     # ensure fields exist
     existing_fields = [f for f in fields if f in df_temp.columns]
     return top_matches[existing_fields].to_dict(orient="records")
+
+import json
+
+# =====================
+# Load user profile
+# =====================
+def load_candidate_from_json(username, json_filename="profiles.json", role="data_analyst"):
+    """
+    Load a candidate profile from profiles.json and split skills into
+    hard, domain, soft, and other categories.
+    """
+    json_path = os.path.join(BASE_DIR, json_filename)
+    try:
+        with open(json_path, "r") as f:
+            profiles = json.load(f)
+    except FileNotFoundError:
+        print(f"❌ profiles.json not found at {json_path}")
+        return None
+
+    profile = profiles.get(username)
+    if not profile:
+        print(f"❌ No profile found for username: {username}")
+        return None
+
+    # --- Split skills into categories ---
+    split_skills = split_candidate_skills(profile.get("skills", []), role=role)
+
+    candidate = {
+        "hard": split_skills["hard"],       # Hard skills
+        "domain": split_skills["domain"],   # Domain knowledge
+        "soft": split_skills["soft"],       # Soft skills
+        "other": split_skills["skills"],    # Skills not mapped
+        "location": ", ".join(filter(None, [profile.get("city", ""), profile.get("country", "")])),
+        "role_interest": profile.get("role_interest", [role])
+    }
+
+    return candidate
+
+
+if __name__ == "__main__":
+    # Simulate user login (username comes from session/login normally)
+    username = "loga"
+
+    # Step 1: Load candidate from profiles.json
+    candidate = load_candidate_from_json(username, role="data_analyst")
+
+    if candidate:
+        print("🎯 Candidate Profile (after skill split):")
+        print(candidate)
+
+        # Step 2: Recommend jobs
+        recommendations = recommend_jobs(candidate, top_k=5)
+
+        # Step 3: Show results
+        print("\n✅ Recommended Jobs:")
+        if recommendations:
+            for idx, job in enumerate(recommendations, 1):
+                print(f"{idx}. {job}")
+        else:
+            print("No matching jobs found.")

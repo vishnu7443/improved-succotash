@@ -39,10 +39,11 @@
         "bio": "none",
         "photoData": null,
         "skills": [
-            "excel",
-            "machine learning",
-            "power bi",
-            "tableau"
+            "tableau",
+            "python",
+            "sql",
+            "communication",
+            "finance"
         ]
     }
 }

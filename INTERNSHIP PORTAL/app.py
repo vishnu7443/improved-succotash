@@ -8,8 +8,6 @@ from flask_babel import Babel
 # app.py (top)
 from text_exact import recommend_jobs, build_candidate_from_profile
 
-candidate = {'skills': ['python','sql'], 'domain': [], 'soft': [], 'location': 'Bengaluru, India', 'role_interest': ['data analyst']}
-print(recommend_jobs(candidate, top_k=3))
 
 app = Flask(__name__)
 app.secret_key = 'replace_with_a_secure_secret_key'
@@ -207,3 +205,4 @@ def recommendations():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
+    
