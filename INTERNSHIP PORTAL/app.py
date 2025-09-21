@@ -199,10 +199,23 @@ def assessment():
     # Optionally, fetch tests from database to pass to template
     return render_template('assessment_test.html', username=session.get('username'))
 
-@app.route('/private_internships')
+@app.route('/private_internship')
 def private_internships():
     # optionally pass internships data here from DB
     return render_template('private_internship.html', username=session.get('username'))
+
+
+@app.route("/apply/<int:job_id>")
+def apply_job(job_id):
+    job = get_job_by_id(job_id)  # fetch job from DB
+    return render_template("apply_job.html", job=job)
+
+@app.route("/job/<int:job_id>")
+def job_detail(job_id):
+    job = get_job_by_id(job_id)
+    return render_template("job_detail.html", job=job)
+
+
 
 @app.route('/recommendations', methods=['GET'])
 def recommendations():

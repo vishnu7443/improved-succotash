@@ -5,73 +5,258 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ _('Main Menu - Internship Portal') }}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='main_menu/menu.css') }}" />
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="{{ url_for('static', filename='main_menu/menu.css') }}" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    .profile-sidebar {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 12px rgb(46 61 73 / 15%);
+      padding: 36px 28px;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .profile-sidebar:hover {
+      box-shadow: 0 6px 18px rgb(46 61 73 / 25%);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Detail Page Styling */
+    #internshipDetail {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    #internshipDetail h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #1e293b;
+    }
+
+    #internshipDetail p {
+      line-height: 1.6;
+      color: #334155;
+    }
+
+    #internshipDetail h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    #internshipDetail button {
+      margin-top: 1rem;
+    }
+
+    .detail-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 2rem;
+      margin: 1.5rem 0;
+      color: #475569;
+    }
+
+    .detail-meta p {
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+    }
+
+    .detail-meta i {
+      margin-right: 8px;
+      font-size: 1rem;
+    }
+
+    /* Detail Page Styling */
+    #internshipDetail {
+      background: linear-gradient(135deg, #f8fafc, #ffffff);
+      border-radius: 20px;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+      animation: fadeIn 0.4s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #internshipDetail::before {
+      content: "";
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle at center, rgba(59, 130, 246, 0.2), transparent);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    #internshipDetail h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    #internshipDetail p {
+      line-height: 1.7;
+      color: #475569;
+      position: relative;
+      z-index: 1;
+    }
+
+    #detail-salary {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Meta Info */
+    .detail-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin: 1.8rem 0;
+      flex-wrap: wrap;
+    }
+
+    .detail-meta p {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .detail-meta p:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .detail-meta i {
+      font-size: 1.1rem;
+    }
+
+    /* Section Headers */
+    #internshipDetail h3 {
+      margin-top: 2rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1e293b;
+      border-left: 4px solid #3b82f6;
+      padding-left: 10px;
+    }
+
+    /* Apply Button */
+    #internshipDetail button {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.9rem 2.5rem;
+      border-radius: 12px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(16, 185, 129, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    #internshipDetail button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(16, 185, 129, 0.4);
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <aside class="sidebar">
-    <div class="brand">
-      <i class="fa-solid fa-briefcase"></i>
-      <span>{{ _('Internship Portal') }}</span>
+  <!-- Sidebar -->
+  <aside class="sidebar flex-shrink-0">
+    <div class="brand p-4">
+      <i class="fa-solid fa-briefcase"></i> {{ _('Internship Portal') }}
     </div>
     <nav>
-      <ul>
-        <li class="active" data-section="dashboard"><i class="fa-solid fa-house"></i> {{ _('Dashboard') }}</li>
-        <li>
-          <a href="{{ url_for('profile') }}" style="color:inherit; text-decoration:none;">
-            <i class="fa-solid fa-user"></i> {{ _('Profile') }}
-          </a>
+      <ul class="list-unstyled m-0 p-0">
+        <li class="p-3 active" onclick="window.location.href='/main_menu'">
+          <i class="fa-solid fa-house me-2"></i>{{ _('Dashboard') }}
         </li>
-        <li data-section="assessment"><i class="fa-solid fa-clipboard-list"></i> {{ _('Assessment Test') }}</li>
-        <li>
-          <a href="{{ url_for('applications') }}">
-            <i class="fa-solid fa-folder-open"></i> Application Management
-          </a>
+        <li class="p-3" onclick="window.location.href='/profile'">
+          <i class="fa-solid fa-user me-2"></i>{{ _('Profile') }}
         </li>
-        <li>
-          <a href="{{ url_for('private_internships') }}">
-            <i class="fa-solid fa-user-lock"></i> Private Internships
-          </a>
+        <li class="p-3" onclick="window.location.href='/assessment'">
+          <i class="fa-solid fa-clipboard-list me-2"></i>{{ _('Assessment Test') }}
         </li>
-
-        <li>
-          <a href="{{ url_for('government_internships') }}">
-            <i class="fa-solid fa-building-columns"></i> Government Internships
-          </a>
+        <li class="p-3" onclick="window.location.href='/applications'">
+          <i class="fa-solid fa-folder-open me-2"></i>{{ _('Application Management') }}
         </li>
-        <li data-section="logout"><i class="fa-solid fa-right-from-bracket"></i> {{ _('Logout') }}</li>
-        <li>
-          <a href="{{ url_for('feedback') }}">
-            <i class="fa-solid fa-star"></i> Feedback
-          </a>
+        <li class="p-3" onclick="window.location.href='/private_internship'">
+          <i class="fa-solid fa-user-lock me-2"></i>{{ _('Private Internships') }}
         </li>
-
+        <li class="p-3" onclick="window.location.href='/government_internships'">
+          <i class="fa-solid fa-building-columns me-2"></i>{{ _('Government Internships') }}
+        </li>
+        <li class="p-3" onclick="window.location.href='/logout'">
+          <i class="fa-solid fa-right-from-bracket me-2"></i>{{ _('Logout') }}
+        </li>
       </ul>
     </nav>
   </aside>
 
+  <!-- Main Content -->
   <main class="content">
     <header>
       <h1>{{ _('Welcome,') }} <span id="usernameDisplay">{{ username }}</span></h1>
     </header>
 
+    <!-- Top Picks Section -->
     <section class="top-picks-header">
       <h2>{{ _('Top picks for you') }}</h2>
       <p class="subtitle">{{ _('Handpicked roles to match your skills') }}</p>
+
       <div class="info-cards">
         <div class="info-card">
           <h3 id="recommendedCount">5</h3>
-          <p>{{ _('Recommended') }}<br /><small>{{ _('Based on your profile') }}</small></p>
+          <p>{{ _('Recommended') }}<br><small>{{ _('Based on your profile') }}</small></p>
         </div>
         <div class="info-card">
           <h3 id="appliedCount">0</h3>
-          <p>{{ _('Applied') }}<br /><small>{{ _('Applications in progress') }}</small></p>
+          <p>{{ _('Applied') }}<br><small>{{ _('Applications in progress') }}</small></p>
         </div>
         <div class="info-card">
           <h3 id="shortlistedCount">1</h3>
-          <p>{{ _('Shortlisted') }}<br /><small>{{ _('Interview invites') }}</small></p>
+          <p>{{ _('Shortlisted') }}<br><small>{{ _('Interview invites') }}</small></p>
         </div>
         <div class="search-bar-header">
           <input type="text" id="internshipSearch"
@@ -81,6 +266,7 @@
       </div>
     </section>
 
+    <!-- Job Recommendations (Grid) -->
     <section class="internship-grid" id="internshipList">
       {% if jobs %}
       {% for job in jobs %}
@@ -91,23 +277,58 @@
         <p><strong>Salary:</strong> {{ job['Salary Estimate'] }}</p>
         <p><strong>Rating:</strong> {{ job['Rating'] }}</p>
         <p><strong>Description:</strong> {{ job['Job Description'][:200] }}...</p>
-
-        <button class="apply-btn">Apply</button>
+        <button class="apply-btn" onclick="showDetails({{ loop.index0 }})">
+          {{ _('View Details') }}
+        </button>
       </div>
       {% endfor %}
       {% else %}
-      <p>No recommendations available right now.</p>
+      <p>{{ _('No recommendations available right now.') }}</p>
       {% endif %}
     </section>
 
+    <!-- Internship Detail View -->
+    <section id="internshipDetail" class="hidden mt-10 max-w-4xl mx-auto">
+      <button onclick="backToList()" class="mb-6 text-blue-600 hover:underline flex items-center gap-2">
+        <i class="fa-solid fa-arrow-left"></i> {{ _('Back to List') }}
+      </button>
+      <h2 id="detail-title"></h2>
+      <p id="detail-salary" class="text-xl text-green-600 font-semibold mb-2"></p>
 
-    <section id="sectionContent">
-      <p>{{ _('Select a menu item to see content here.') }}</p>
+      <div class="detail-meta">
+        <p><i class="fa-solid fa-building text-indigo-600"></i><span id="detail-company"></span></p>
+        <p><i class="fa-solid fa-location-dot text-red-600"></i><span id="detail-location"></span></p>
+        <p><i class="fa-solid fa-star text-yellow-500"></i><span id="detail-rating"></span></p>
+      </div>
+
+      <h3>{{ _('Description') }}</h3>
+      <p id="detail-description" class="mb-6"></p>
+
+      <button class="bg-green-600 text-white font-bold px-8 py-3 rounded-lg shadow hover:bg-green-700 transition">
+        <i class="fa-solid fa-check mr-2"></i> {{ _('Apply Now') }}
+      </button>
     </section>
   </main>
 
+  <!-- Scripts -->
   <script>
-    const USERNAME = "{{ username }}";
+    const jobs = {{ jobs| tojson }};
+    function showDetails(index) {
+      const job = jobs[index];
+      document.getElementById('internshipList').classList.add('hidden');
+      document.getElementById('internshipDetail').classList.remove('hidden');
+
+      document.getElementById('detail-title').innerText = job['Job Title'];
+      document.getElementById('detail-salary').innerText = job['Salary Estimate'];
+      document.getElementById('detail-company').innerText = job['Company Name'];
+      document.getElementById('detail-location').innerText = job['Location'];
+      document.getElementById('detail-rating').innerText = job['Rating'];
+      document.getElementById('detail-description').innerText = job['Job Description'];
+    }
+    function backToList() {
+      document.getElementById('internshipDetail').classList.add('hidden');
+      document.getElementById('internshipList').classList.remove('hidden');
+    }
   </script>
   <script src="{{ url_for('static', filename='main_menu/menu.js') }}"></script>
 </body>

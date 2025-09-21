@@ -1,0 +1,30 @@
+<aside class="sidebar flex-shrink-0">
+  <div class="brand p-4">
+    <i class="fa-solid fa-briefcase"></i> {{ _('Internship Portal') }}
+  </div>
+  <nav>
+    <ul class="list-unstyled m-0 p-0">
+      <li class="p-3 {% if active_page == 'dashboard' %}active{% endif %}" onclick="window.location.href='/main_menu'">
+        <i class="fa-solid fa-house me-2"></i>{{ _('Dashboard') }}
+      </li>
+      <li class="p-3 {% if active_page == 'profile' %}active{% endif %}" onclick="window.location.href='/profile'">
+        <i class="fa-solid fa-user me-2"></i>{{ _('Profile') }}
+      </li>
+      <li class="p-3 {% if active_page == 'assessment' %}active{% endif %}" onclick="window.location.href='/assessment'">
+        <i class="fa-solid fa-clipboard-list me-2"></i>{{ _('Assessment Test') }}
+      </li>
+      <li class="p-3 {% if active_page == 'applications' %}active{% endif %}" onclick="window.location.href='/applications'">
+        <i class="fa-solid fa-folder-open me-2"></i>{{ _('Application Management') }}
+      </li>
+      <li class="p-3 {% if active_page == 'private_internships' %}active{% endif %}" onclick="window.location.href='/private_internship'">
+        <i class="fa-solid fa-user-lock me-2"></i>{{ _('Private Internships') }}
+      </li>
+      <li class="p-3 {% if active_page == 'government_internships' %}active{% endif %}" onclick="window.location.href='/government_internships'">
+        <i class="fa-solid fa-building-columns me-2"></i>{{ _('Government Internships') }}
+      </li>
+      <li class="p-3 {% if active_page == 'logout' %}active{% endif %}" onclick="window.location.href='/logout'">
+        <i class="fa-solid fa-right-from-bracket me-2"></i>{{ _('Logout') }}
+      </li>
+    </ul>
+  </nav>
+</aside>

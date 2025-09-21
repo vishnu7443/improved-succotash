@@ -17,26 +17,39 @@
   </style>
 </head>
 <body class="bg-gray-100 min-h-screen p-6 font-sans text-gray-800">
-<aside class="sidebar">
-  <div class="brand">
-    <i class="fa-solid fa-briefcase"></i>
-    Internship Portal
-  </div>
-  <nav>
-    <ul>
-      <li><a href="/dashboard"><i class="fa-solid fa-house"></i> Dashboard</a></li>
-      <li><a href="/profile"><i class="fa-solid fa-user"></i> Profile</a></li>
-      <li><a href="/assessment"><i class="fa-solid fa-clipboard-list"></i> Assessment Test</a></li>
-      <li><a href="/applications"><i class="fa-solid fa-folder-open"></i> Application Management</a></li>
-      <li><a href="/private_internships"><i class="fa-solid fa-user-lock"></i> Private Internships</a></li>
-      <li class="active"><a href="/government_internships"><i class="fa-solid fa-building-columns"></i> Government Internships</a></li>
-      <li><a href="/feedback"><i class="fa-solid fa-star"></i> Feedback</a></li>
-      <li><a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-    </ul>
-  </nav>
-</aside>
+  <!-- Sidebar -->
+  <aside class="sidebar flex-shrink-0">
+    <div class="brand p-4">
+      <i class="fa-solid fa-briefcase"></i> {{ _('Internship Portal') }}
+    </div>
+    <nav>
+      <ul class="list-unstyled m-0 p-0">
+        <li class="p-3" onclick="window.location.href='/main_menu'">
+          <i class="fa-solid fa-house me-2"></i>{{ _('Dashboard') }}
+        </li>
+        <li class="p-3" onclick="window.location.href='/profile'">
+          <i class="fa-solid fa-user me-2"></i>{{ _('Profile') }}
+        </li>
+        <li class="p-3" onclick="window.location.href='/assessment'">
+          <i class="fa-solid fa-clipboard-list me-2"></i>{{ _('Assessment Test') }}
+        </li>
+        <li class="p-3" onclick="window.location.href='/applications'">
+          <i class="fa-solid fa-folder-open me-2"></i>{{ _('Application Management') }}
+        </li>
+        <li class="p-3" onclick="window.location.href='/private_internship'">
+          <i class="fa-solid fa-user-lock me-2"></i>{{ _('Private Internships') }}
+        </li>
+        <li class="p-3 active" onclick="window.location.href='/government_internships'">
+          <i class="fa-solid fa-building-columns me-2"></i>{{ _('Government Internships') }}
+        </li>
+        <li class="p-3" onclick="window.location.href='/logout'">
+          <i class="fa-solid fa-right-from-bracket me-2"></i>{{ _('Logout') }}
+        </li>
+      </ul>
+    </nav>
+  </aside>
 
-  <div class="max-w-6xl mx-auto">
+  <div class="flex-grow p-8 max-w-5xl mx-auto w-[1200px]">
     <!-- Header -->
     <h1 class="text-3xl font-extrabold mb-8 border-b-2 border-blue-600 pb-2 flex items-center">
       <i class="fa-solid fa-building-columns text-blue-600 mr-3"></i>

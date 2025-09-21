@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ locale }}">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,9 +7,11 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-  <!-- Profile and Menu CSS -->
+
+  <!-- Profile and Sidebar CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='profile/profile.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='main_menu/menu.css') }}" />
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
@@ -36,7 +37,7 @@
           <li class="p-3" onclick="window.location.href='/applications'">
             <i class="fa-solid fa-folder-open me-2"></i>{{ _('Application Management') }}
           </li>
-          <li class="p-3" onclick="window.location.href='/private_internships'">
+          <li class="p-3" onclick="window.location.href='/private_internship'">
             <i class="fa-solid fa-user-lock me-2"></i>{{ _('Private Internships') }}
           </li>
           <li class="p-3" onclick="window.location.href='/government_internships'">
@@ -49,7 +50,7 @@
       </nav>
     </aside>
 
-    <!-- Main content -->
+    <!-- Main Content -->
     <main class="content flex-grow-1 p-5">
       <header class="mb-5">
         <h1>{{ _('Welcome,') }} {{ session.get('username', _('User')) }}</h1>
@@ -57,21 +58,16 @@
 
       <div class="container-fluid">
         <div class="row g-4">
-          <!-- Profile sidebar info -->
+          
+          <!-- Profile Sidebar Info -->
           <div class="col-lg-4">
             <div class="profile-sidebar bg-white rounded-4 shadow-sm p-4 text-center">
-              <img
-                src="https://randomuser.me/api/portraits/women/44.jpg"
-                alt="{{ _('Profile Pic') }}"
-                id="profileImg"
-                class="profile-pic rounded-circle mb-3"
-              />
-              <label
-                for="photoUpload"
-                role="button"
-                tabindex="0"
-                class="edit-link d-block mb-3"
-              >
+              <img src="https://randomuser.me/api/portraits/women/44.jpg"
+                   alt="{{ _('Profile Pic') }}"
+                   id="profileImg"
+                   class="profile-pic rounded-circle mb-3" />
+
+              <label for="photoUpload" role="button" tabindex="0" class="edit-link d-block mb-3">
                 {{ _('Change Photo') }}
               </label>
               <input type="file" id="photoUpload" accept="image/*" style="display:none;" />
@@ -88,25 +84,23 @@
               <div>
                 <span class="profile-label fw-semibold">{{ _('Specializations') }}</span>
                 <div id="skillsList" class="d-flex flex-wrap gap-2 mb-2"></div>
+
                 <div class="position-relative">
-                  <input
-                    type="text"
-                    id="skillsInput"
-                    class="form-control"
-                    placeholder="{{ _('Add a skill') }}"
-                    autocomplete="off"
-                  />
+                  <input type="text" id="skillsInput" class="form-control"
+                         placeholder="{{ _('Add a skill') }}" autocomplete="off" />
                   <div id="suggestionBox" class="autocomplete-items bg-white shadow rounded w-100 position-absolute"></div>
                 </div>
+
                 <button class="btn btn-primary btn-sm w-100 mt-2" onclick="addSkill()">{{ _('Add Skill') }}</button>
               </div>
             </div>
           </div>
 
-          <!-- Profile form -->
+          <!-- Profile Form -->
           <div class="col-lg-8">
             <div class="card p-4 shadow-sm rounded-4">
               <h5 class="text-primary fw-semibold mb-4">{{ _('Account Details') }}</h5>
+
               <form id="profileForm" onsubmit="event.preventDefault(); saveProfile();">
                 <div class="row g-3">
                   <div class="col-md-6">
@@ -125,6 +119,7 @@
                     <label for="inputLastName" class="profile-label">{{ _('Last name') }} <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="inputLastName" placeholder="{{ _('Last name') }}" required />
                   </div>
+
                   <div class="col-md-6">
                     <label for="countrySelect" class="profile-label">{{ _('Country') }} <span class="text-danger">*</span></label>
                     <select id="countrySelect" class="form-select" required>
@@ -136,12 +131,14 @@
                       <option value="Japan">{{ _('Japan') }}</option>
                     </select>
                   </div>
+
                   <div class="col-md-6">
                     <label for="citySelect" class="profile-label">{{ _('City') }} <span class="text-danger">*</span></label>
                     <select id="citySelect" class="form-select" disabled required>
                       <option value="" selected disabled>{{ _('Select a city') }}</option>
                     </select>
                   </div>
+
                   <div class="col-md-4">
                     <label for="countryCode" class="profile-label">{{ _('Country Code') }} <span class="text-danger">*</span></label>
                     <select id="countryCode" class="form-select" required>
@@ -152,17 +149,13 @@
                       <option value="+81" data-length="10">{{ _('Japan (+81)') }}</option>
                     </select>
                   </div>
+
                   <div class="col-md-8">
                     <label for="inputPhone" class="profile-label">{{ _('Phone Number') }} <span class="text-danger">*</span></label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="inputPhone"
-                      placeholder="{{ _('Enter phone number') }}"
-                      maxlength="10"
-                      required
-                    />
+                    <input type="text" class="form-control" id="inputPhone"
+                           placeholder="{{ _('Enter phone number') }}" maxlength="10" required />
                   </div>
+
                   <div class="col-md-6">
                     <label for="inputUniversity" class="profile-label">{{ _('University/College') }} <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="inputUniversity" placeholder="{{ _('University or College') }}" required />
@@ -171,40 +164,35 @@
                     <label for="inputDegree" class="profile-label">{{ _('Degree') }} <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="inputDegree" placeholder="{{ _('Degree') }}" required />
                   </div>
+
                   <div class="col-md-6">
                     <label for="inputFieldStudy" class="profile-label">{{ _('Field of Study') }} <span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="inputFieldStudy" placeholder="{{ _('Field of Study') }}" required />
                   </div>
                   <div class="col-md-6">
                     <label for="inputGraduationYear" class="profile-label">{{ _('Graduation Year') }} <span class="text-danger">*</span></label>
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="inputGraduationYear"
-                      placeholder="{{ _('Graduation Year') }}"
-                      min="1900"
-                      max="2100"
-                      required
-                    />
+                    <input type="number" class="form-control" id="inputGraduationYear"
+                           placeholder="{{ _('Graduation Year') }}" min="1900" max="2100" required />
                   </div>
+
                   <div class="col-md-6">
                     <label for="inputLinkedIn" class="profile-label">{{ _('LinkedIn Profile URL') }}</label>
-                    <input
-                      type="url"
-                      class="form-control"
-                      id="inputLinkedIn"
-                      placeholder="{{ _('https://linkedin.com/in/username') }}"
-                    />
+                    <input type="url" class="form-control" id="inputLinkedIn"
+                           placeholder="{{ _('https://linkedin.com/in/username') }}" />
                   </div>
+
                   <div class="col-12">
                     <label for="inputPortfolio" class="profile-label">{{ _('Portfolio/Website URL') }}</label>
                     <input type="url" class="form-control" id="inputPortfolio" placeholder="{{ _('https://yourportfolio.com') }}" />
                   </div>
+
                   <div class="col-12">
                     <label for="inputBio" class="profile-label">{{ _('Short Bio / About Me') }}</label>
-                    <textarea class="form-control" id="inputBio" rows="3" placeholder="{{ _('Write something about yourself') }}"></textarea>
+                    <textarea class="form-control" id="inputBio" rows="3"
+                              placeholder="{{ _('Write something about yourself') }}"></textarea>
                   </div>
                 </div>
+
                 <button class="btn btn-primary mt-4 w-100 py-2 fs-5" type="submit">{{ _('Save changes') }}</button>
               </form>
             </div>
@@ -212,9 +200,10 @@
         </div>
       </div>
     </main>
+  </div>
 
-    <!-- JS -->
-    <script src="{{ url_for('static', filename='profile/profile.js') }}"></script>
-    <script src="{{ url_for('static', filename='main_menu/menu.js') }}"></script>
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='profile/profile.js') }}"></script>
+  <script src="{{ url_for('static', filename='main_menu/menu.js') }}"></script>
 </body>
 </html>
